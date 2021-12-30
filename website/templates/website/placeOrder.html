@@ -1,0 +1,55 @@
+
+{% extends 'website/dependencies.html' %}
+
+{% block content %}
+
+{%load static%}
+<style>
+    #Unseul
+    {
+        height:300px;
+        width:300px;
+    }
+</style>
+<div class="jumbotron container row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <p>{{request.user.customer.name}} est en train de commander !!</p>
+           <form method="POST" action="">
+              {% csrf_token %}
+                {{form.as_ul}}
+                <br>
+             <input type="submit" name="submit">
+           </form>
+        </div>
+    </div>
+    <script>
+        document.querySelector('#id_product').addEventListener("change",function() {
+        if(document.getElementsByName("product")[0].options[document.getElementsByName("product")[0].selectedIndex].text=="---------")
+        {}
+        else{
+        if (document.getElementById("Unseul") == null)
+        {
+            var Img=document.createElement("img")
+            var combo=document.getElementsByName("product")[0]
+            Img.setAttribute('src',"/static/"+combo.options[combo.selectedIndex].text+".jpg");
+            Img.setAttribute('id','Unseul');
+            document.body.appendChild(Img);
+            ;
+        } else
+        {
+            var Img_tmp = document.getElementById("Unseul");
+            Img_tmp.parentNode.removeChild(Img_tmp);
+            var Img_new=document.createElement("img")
+            var combo=document.getElementsByName("product")[0]
+            Img_new.setAttribute('src',"/static/"+combo.options[combo.selectedIndex].text+".jpg");
+            Img_new.setAttribute('id','Unseul');
+            document.body.appendChild(Img_new);
+            ;
+
+        }}})
+
+   </script>
+</div>
+{% endblock %}
+ 

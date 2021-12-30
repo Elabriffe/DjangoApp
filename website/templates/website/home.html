@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+
+
+{% extends 'website/dependencies.html' %}
+
+{% block content %}
+{% load static %}
+
+
+
+
+
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+</head>
+
+<script>
+ jQuery(document).ready(function() {
+  jQuery( function() {
+    jQuery( "#tags" ).autocomplete({
+      source: [ "ActionScript", "AppleScript", "Asp" ]
+    });
+  } );
+});
+</script>
+
+<input id="tags">
+
+<div class="container ">
+<h1>Products</h1>
+<div class="card-columns" style="padding: 10px; margin: 20px;">
+{% for p  in products%}
+    <div class="card" style="width: 18rem; border:5px black solid">
+        <img class="card-img-top" src='{{p.image.url}}' alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title">{{p.name}}</h5>
+        <p class="card-text">{{p.description}}</p>
+        </div>
+    </div>
+ {% endfor %}
+</div>
+{% endblock %}
+
+
+ 
